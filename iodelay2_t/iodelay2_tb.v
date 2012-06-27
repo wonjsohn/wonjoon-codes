@@ -66,7 +66,7 @@ module iodelay2_tb;
         #2  spike = 0;
         #40 spike = 1;
         #2  spike = 0;#40 spike = 1;#40 spike = 1;#40 spike = 1;
-        #30000
+        #300000
         $finish; // to shut down the simulation
     end //initial
 
@@ -95,10 +95,70 @@ module iodelay2_tb;
 //        #1  spike = 0;
 //    end
 
-    wire [18:0] blk_size;
-    assign blk_size = 19'd99;
+//    wire [18:0] blk_size;
+//    assign blk_size = 19'd200000;
+//    
+//    reg [18:0] write_index, read_index;
+//    reg write;
+//    reg blk_mem_filled;
+//    
+//    wire [3:0] read_write_diff;
+//    assign read_write_diff = 4'd5;
+//    
+//    always @ (posedge clk1 or posedge reset)
+//    begin
+//        if (reset) begin
+//            write <= 0;
+//            write_index<=0;
+//            read_index <=0;
+//            blk_mem_filled <=0;
+//        end 
+//        else begin
+//            write_index <= write_index + 1;
+//            write <= 1;  // always write
+//            if (write_index == (blk_size - read_write_diff )) begin   // wrap around the blk_mem
+//                blk_mem_filled <= 1;             // stay filled after initial fill. 
+//                read_index <= 1;
+//            end
+//            if (write_index == blk_size) 
+//                write_index <= 0;
+//            if (blk_mem_filled) begin
+//                read_index <= read_index + 1;
+//                if (read_index == blk_size) 
+//                    read_index <= 0; 
+//                else 
+//                    read_index <= read_index + 1;
+//            end 
+//        end
+//    end
+//    
+//    reg reset_global;
+//    wire spike_in1;
+//    assign spike_in1 = spike;
+//    
+//    wire spike_in1_delayed;
+////    wire write;
+////    assign write = 1'b1;
+//
+//     
+//
+//   test_ram spike_ram1(
+//    .clka(clk1),
+//    .wea(write),
+//    .addra(write_index),
+//    .dina(spike_in1),
+//    .clkb(clk1),
+//    .addrb(read_index),
+//    .doutb(spike_in1_delayed)
+//    );
+
+
+
+ // delay by blk memory (1 bit) 
+    wire [20:0] blk_size;
+    assign blk_size = 21'd1600000;
     
-    reg [18:0] write_index, read_index;
+    reg [20:0] write_index, read_index;
     reg write;
     reg blk_mem_filled;
     
@@ -116,43 +176,34 @@ module iodelay2_tb;
         else begin
             write_index <= write_index + 1;
             write <= 1;  // always write
-            if (write_index == (blk_size - read_write_diff )) begin   // wrap around the blk_mem
+            if (write_index == (blk_size - read_write_diff)) begin   // wrap around the blk_mem
                 blk_mem_filled <= 1;             // stay filled after initial fill. 
-                read_index <= 1;
+                read_index <= read_index + 1;
             end
-            if (write_index == blk_size) 
+                
+            if (write_index == blk_size) // write_index wraps around. 
                 write_index <= 0;
+                
             if (blk_mem_filled) begin
                 read_index <= read_index + 1;
-                if (read_index == blk_size) 
+                if (read_index == blk_size)  // 
                     read_index <= 0; 
                 else 
                     read_index <= read_index + 1;
             end 
         end
     end
-    
-    reg reset_global;
-    wire spike_in1;
-    assign spike_in1 = spike;
-    
     wire spike_in1_delayed;
-//    wire write;
-//    assign write = 1'b1;
-
-     
-
-   test_ram spike_ram1(
+    
+blk_mem_gen_v6_1 spike_ram1(
     .clka(clk1),
     .wea(write),
     .addra(write_index),
-    .dina(spike_in1),
+    .dina(spike),
     .clkb(clk1),
     .addrb(read_index),
     .doutb(spike_in1_delayed)
     );
-
-    
     
 //// test this module (IODELAY2) separately in a spare time. 
 //     

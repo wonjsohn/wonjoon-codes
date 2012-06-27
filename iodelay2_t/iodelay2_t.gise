@@ -26,6 +26,7 @@
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="iodelay2_tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="iodelay2_tb_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="iodelay2_tb_isim_beh.wdb"/>
+    <file xil_pn:fileType="FILE_LOG" xil_pn:name="ipcore_dir/coregen.log"/>
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
@@ -37,7 +38,7 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1338515142" xil_pn:in_ck="-3570866201096304174" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1338515142">
+    <transform xil_pn:end_ts="1338852731" xil_pn:in_ck="-3570866201096304174" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1338852731">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="iodelay2_tb.v"/>
@@ -50,21 +51,22 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1338423978" xil_pn:in_ck="-42231121195040107" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="1292807186728789391" xil_pn:start_ts="1338423978">
+    <transform xil_pn:end_ts="1338852678" xil_pn:in_ck="1540972388200387730" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="1292807186728789391" xil_pn:start_ts="1338852678">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="ipcore_dir/test/test_ram.ngc"/>
-      <outfile xil_pn:name="ipcore_dir/test/test_ram.v"/>
+      <outfile xil_pn:name="ipcore_dir/blk_mem_gen_v6_1.ngc"/>
+      <outfile xil_pn:name="ipcore_dir/blk_mem_gen_v6_1.v"/>
     </transform>
-    <transform xil_pn:end_ts="1338515142" xil_pn:in_ck="-8437201034397590285" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1338515142">
+    <transform xil_pn:end_ts="1338852731" xil_pn:in_ck="6509605939065635440" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1338852731">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="iodelay2_tb.v"/>
-      <outfile xil_pn:name="ipcore_dir/test/test_ram.v"/>
+      <outfile xil_pn:name="ipcore_dir/blk_mem_gen_v6_1.v"/>
     </transform>
-    <transform xil_pn:end_ts="1338515143" xil_pn:in_ck="-8437201034397590285" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-35590657743180151" xil_pn:start_ts="1338515142">
+    <transform xil_pn:end_ts="1338852733" xil_pn:in_ck="6509605939065635440" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-35590657743180151" xil_pn:start_ts="1338852731">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="fuse.log"/>
@@ -74,9 +76,13 @@
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1338515143" xil_pn:in_ck="-4824690348259599683" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5832482529947126508" xil_pn:start_ts="1338515143">
+    <transform xil_pn:end_ts="1338852733" xil_pn:in_ck="-4824690348259599683" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5832482529947126508" xil_pn:start_ts="1338852733">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="iodelay2_tb_isim_beh.wdb"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>

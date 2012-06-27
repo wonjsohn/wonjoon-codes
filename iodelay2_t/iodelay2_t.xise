@@ -21,12 +21,12 @@
       <association xil_pn:name="PostRouteSimulation" xil_pn:seqID="1"/>
       <association xil_pn:name="PostTranslateSimulation" xil_pn:seqID="1"/>
     </file>
-    <file xil_pn:name="ipcore_dir/test/test_ram.xco" xil_pn:type="FILE_COREGEN">
+    <file xil_pn:name="ipcore_dir/blk_mem_gen_v6_1.xco" xil_pn:type="FILE_COREGEN">
       <association xil_pn:name="BehavioralSimulation" xil_pn:seqID="1"/>
-      <association xil_pn:name="Implementation" xil_pn:seqID="47"/>
+      <association xil_pn:name="Implementation" xil_pn:seqID="17"/>
     </file>
-    <file xil_pn:name="ipcore_dir/test/test_ram.xise" xil_pn:type="FILE_COREGENISE">
-      <association xil_pn:name="Implementation" xil_pn:seqID="48"/>
+    <file xil_pn:name="ipcore_dir/blk_mem_gen_v6_1.xise" xil_pn:type="FILE_COREGENISE">
+      <association xil_pn:name="Implementation" xil_pn:seqID="18"/>
     </file>
   </files>
 
