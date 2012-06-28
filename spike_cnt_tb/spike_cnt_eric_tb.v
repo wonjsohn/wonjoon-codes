@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+`timescale 1ns / 10ps
 /************************************************************************
 * Date: 
 * File: 
@@ -10,13 +10,14 @@
 module spike_cnt_tb;
 //*********************************************************
 wire [31:0] int_cnt_out, cnt; //use wire data type for outputs from instantiated module
-wire t1, t2, read;
+wire t1, t2, read; 
+wire [1:0] wait_for_one_more_spike;
 reg spike, reset;
 reg slow_clk, clk; 
 
 
 //spikecnt DUT(spike, int_cnt_out, fast_clk, slow_clk, reset, clear_out, cnt, t1, t2, read);
-spike_counter DUT1(spike, int_cnt_out, slow_clk, reset, clear_out, cnt);
+spike_counter DUT1(spike, int_cnt_out, slow_clk, reset, clear_out, cnt, read, wait_for_one_more_spike);
 
 //This block generates a clock pulse with a 20 ns period
 
@@ -24,29 +25,30 @@ spike_counter DUT1(spike, int_cnt_out, slow_clk, reset, clear_out, cnt);
     // of the mux so that both inputs/outputs can be displayed
 initial begin
     $timeformat(-9, 1, " ns", 6);
+	 #1000
     slow_clk = 1'b0; clk = 1'b0; reset = 1; spike = 0;
     #1000 reset = 0; 
 
-    #30000
+    #30000000
     $finish; // to shut down the simulation
 	end //initial
 // this block is sensitive to changes on ANY of the inputs and will
 // then display both the inputs and corresponding output
 
 always
-	#5 clk = ~clk;
+	#5 clk = ~clk;  // 200Mhz base clk
 
 always
-  #1000 slow_clk = ~slow_clk; // 1ms slow clock
+  #1000000 slow_clk = ~slow_clk; // 1ms slow clock
 
 always 
     begin
-        #2 spike = 1;  // spike every 0.4ms.
-        #1   spike = 0;
+        #1789 spike = 1;  // spike rate in Mhz range
+        #1000   spike = 0;
     end
 
 always @(posedge slow_clk)
-     $display("At t=%t int_cnt_our=%d", $time, int_cnt_out);
+     $display("At t=%t int_cnt_out=%d", $time, int_cnt_out);
 
 endmodule
 
@@ -108,42 +110,54 @@ module spikecnt(spike, int_cnt_out, fast_clk, slow_clk, reset, clear_out, cnt, t
 endmodule
 
 
-module spike_counter(spike, int_cnt_out, slow_clk, reset, clear_out, cnt);
+module spike_counter(spike, int_cnt_out, slow_clk, reset, clear_out, cnt, read, wait_for_one_more_spike);
     input   spike, slow_clk, reset;
     output  reg    [31:0]  int_cnt_out;
     output reg     [31:0]  cnt;
 	 reg slow_clk_up; 
-    output clear_out;
+    output clear_out, read;
+	 output reg [1:0] wait_for_one_more_spike;
     assign clear_out = slow_clk_up;
 	 
     always @(posedge reset or posedge slow_clk or posedge spike) begin
         if (reset) begin 
             slow_clk_up <= 1'b0;
+				wait_for_one_more_spike <= 2'd0;
         end 
-		  else if (spike) begin
-				slow_clk_up <= 1'b0;	
+		  else if (slow_clk) begin 
+			   slow_clk_up <= 1'b1;
+				wait_for_one_more_spike <= 2'd2;
 		  end
-		  else begin
-            slow_clk_up <= 1'b1;
-        end
+		  else begin//if (spike) begin
+				slow_clk_up <= 1'b0;
+				if (wait_for_one_more_spike > 0) 
+					wait_for_one_more_spike <= (wait_for_one_more_spike - 1'b1);
+		  end
     end 
 	 
 	 wire read;
-    assign read = !(slow_clk ^ slow_clk_up);
+    assign read = slow_clk ^ slow_clk_up;
 	 
-    always @(posedge reset or posedge slow_clk_up or posedge spike) begin
+	 
+	 // spike and slow_clk_up are not mutually exclusive in ISIM env. 
+	 // Try make intermediate variable to wait for two spikes (lose one spike count) 
+
+	 
+    always @(posedge reset or posedge spike) begin
 	  if (reset) begin
 			cnt <= 32'd0;
-			int_cnt_out <= 32'd0;	
+			int_cnt_out <= 32'd0;
+						
 	  end
-	  else if (spike && !read) begin //   SPIKE HIGH ONLY
+	  else if (wait_for_one_more_spike == 2'd1) begin
+	  		int_cnt_out <= cnt;
+			cnt <= 32'd0;     
+	  end
+	  else begin //if (spike) begin //   SPIKE HIGH ONLY
 			int_cnt_out <= int_cnt_out;
 			cnt <= cnt + 32'd1;
 	  end
-	  else begin   // SPIKE HIGH and SLOW_CLK UP.
-			int_cnt_out <= cnt;
-			cnt <= 32'd0;  // add one spike                 
-	  end   
+
 //	  else if (!slow_clk_up && (spike == 1'b0)) begin  // SLOW CLK UP, NO SPIKE
 //			int_cnt_out <= cnt;
 //			cnt <= 32'd0;    // count being renewed at every posedge of slow clock = read.
