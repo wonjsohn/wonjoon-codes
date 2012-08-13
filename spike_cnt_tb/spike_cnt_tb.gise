@@ -30,6 +30,7 @@
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="spike_cnt_tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="spike_cnt_tb_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="spike_cnt_tb_isim_beh.wdb"/>
+    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="spikecnt_isim_beh.exe"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_INI" xil_pn:name="xilinxsim.ini"/>
   </files>
 
@@ -38,23 +39,23 @@
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1340860436" xil_pn:in_ck="4731394021994645568" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1340860436">
+    <transform xil_pn:end_ts="1344295589" xil_pn:in_ck="4731394021994645568" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1344295589">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="spike_cnt_eric_tb.v"/>
       <outfile xil_pn:name="spikecnt.v"/>
     </transform>
-    <transform xil_pn:end_ts="1340832119" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="1263116949472910038" xil_pn:start_ts="1340832119">
+    <transform xil_pn:end_ts="1344290568" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="1263116949472910038" xil_pn:start_ts="1344290568">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1340860436" xil_pn:in_ck="4731394021994645568" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1340860436">
+    <transform xil_pn:end_ts="1344295589" xil_pn:in_ck="4731394021994645568" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1344295589">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="spike_cnt_eric_tb.v"/>
       <outfile xil_pn:name="spikecnt.v"/>
     </transform>
-    <transform xil_pn:end_ts="1340860437" xil_pn:in_ck="4731394021994645568" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-7977395643799284173" xil_pn:start_ts="1340860436">
+    <transform xil_pn:end_ts="1344295589" xil_pn:in_ck="4731394021994645568" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-7977395643799284173" xil_pn:start_ts="1344295589">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -66,7 +67,7 @@
       <outfile xil_pn:name="spike_cnt_tb_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1340860437" xil_pn:in_ck="-8299927083632610140" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-5926615317640616746" xil_pn:start_ts="1340860437">
+    <transform xil_pn:end_ts="1344295589" xil_pn:in_ck="-5448792182441639814" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-5926615317640616746" xil_pn:start_ts="1344295589">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <outfile xil_pn:name="isim.cmd"/>
