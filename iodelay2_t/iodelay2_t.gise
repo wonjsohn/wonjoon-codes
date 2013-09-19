@@ -54,38 +54,36 @@
     <transform xil_pn:end_ts="1338852678" xil_pn:in_ck="1540972388200387730" xil_pn:name="TRAN_regenerateCoresSim" xil_pn:prop_ck="1292807186728789391" xil_pn:start_ts="1338852678">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <outfile xil_pn:name="ipcore_dir/blk_mem_gen_v6_1.ngc"/>
-      <outfile xil_pn:name="ipcore_dir/blk_mem_gen_v6_1.v"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="InputRemoved"/>
     </transform>
     <transform xil_pn:end_ts="1338852731" xil_pn:in_ck="6509605939065635440" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1338852731">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
       <outfile xil_pn:name="iodelay2_tb.v"/>
-      <outfile xil_pn:name="ipcore_dir/blk_mem_gen_v6_1.v"/>
     </transform>
     <transform xil_pn:end_ts="1338852733" xil_pn:in_ck="6509605939065635440" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-35590657743180151" xil_pn:start_ts="1338852731">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
-      <status xil_pn:value="OutOfDateForProperties"/>
-      <status xil_pn:value="OutOfDateForOutputs"/>
-      <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="fuse.log"/>
-      <outfile xil_pn:name="iodelay2_tb_beh.prj"/>
-      <outfile xil_pn:name="iodelay2_tb_isim_beh.exe"/>
-      <outfile xil_pn:name="isim"/>
-      <outfile xil_pn:name="isim.log"/>
-      <outfile xil_pn:name="xilinxsim.ini"/>
-    </transform>
-    <transform xil_pn:end_ts="1338852733" xil_pn:in_ck="-4824690348259599683" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5832482529947126508" xil_pn:start_ts="1338852733">
-      <status xil_pn:value="SuccessfullyRun"/>
-      <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
       <status xil_pn:value="OutOfDateForProperties"/>
       <status xil_pn:value="OutOfDateForPredecessor"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
       <status xil_pn:value="OutputChanged"/>
-      <outfile xil_pn:name="iodelay2_tb_isim_beh.wdb"/>
-      <outfile xil_pn:name="isim.cmd"/>
-      <outfile xil_pn:name="isim.log"/>
+      <status xil_pn:value="OutputRemoved"/>
+    </transform>
+    <transform xil_pn:end_ts="1338852733" xil_pn:in_ck="-4824690348259599683" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="5832482529947126508" xil_pn:start_ts="1338852733">
+      <status xil_pn:value="SuccessfullyRun"/>
+      <status xil_pn:value="NotReadyToRun"/>
+      <status xil_pn:value="OutOfDateForInputs"/>
+      <status xil_pn:value="OutOfDateForProperties"/>
+      <status xil_pn:value="OutOfDateForPredecessor"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="InputRemoved"/>
+      <status xil_pn:value="OutputChanged"/>
+      <status xil_pn:value="OutputRemoved"/>
     </transform>
     <transform xil_pn:name="TRAN_SubProjectAbstractToPreProxy">
       <status xil_pn:value="SuccessfullyRun"/>

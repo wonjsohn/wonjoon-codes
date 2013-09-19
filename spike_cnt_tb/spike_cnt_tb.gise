@@ -26,7 +26,6 @@
     <file xil_pn:fileType="FILE_DIRECTORY" xil_pn:name="isim"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_CMD" xil_pn:name="isim.cmd"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_LOG" xil_pn:name="isim.log"/>
-    <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="spike_cnt_eric_tb_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_XST_PROJECT" xil_pn:name="spike_cnt_tb_beh.prj"/>
     <file xil_pn:branch="BehavioralSim" xil_pn:fileType="FILE_ISIM_EXE" xil_pn:name="spike_cnt_tb_isim_beh.exe"/>
     <file xil_pn:fileType="FILE_ISIM_MISC" xil_pn:name="spike_cnt_tb_isim_beh.wdb"/>
@@ -35,27 +34,27 @@
   </files>
 
   <transforms xmlns="http://www.xilinx.com/XMLSchema">
-    <transform xil_pn:end_ts="1340831841" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1340831841">
+    <transform xil_pn:end_ts="1344982205" xil_pn:name="TRAN_copyInitialToAbstractSimulation" xil_pn:start_ts="1344982205">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1344295589" xil_pn:in_ck="4731394021994645568" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1344295589">
+    <transform xil_pn:end_ts="1345165673" xil_pn:in_ck="5019198705052173010" xil_pn:name="TRAN_copyAbstractToPostAbstractSimulation" xil_pn:start_ts="1345165673">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../../nerf_verilog_eric/source/clk_related/spikecnt.v"/>
       <outfile xil_pn:name="spike_cnt_eric_tb.v"/>
-      <outfile xil_pn:name="spikecnt.v"/>
     </transform>
-    <transform xil_pn:end_ts="1344290568" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="1263116949472910038" xil_pn:start_ts="1344290568">
+    <transform xil_pn:end_ts="1344969860" xil_pn:name="TRAN_schematicsToHdlSim" xil_pn:prop_ck="1263116949472910038" xil_pn:start_ts="1344969860">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
     </transform>
-    <transform xil_pn:end_ts="1344295589" xil_pn:in_ck="4731394021994645568" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1344295589">
+    <transform xil_pn:end_ts="1345165673" xil_pn:in_ck="5019198705052173010" xil_pn:name="TRAN_copyPostAbstractToPreSimulation" xil_pn:start_ts="1345165673">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <outfile xil_pn:name="../../nerf_verilog_eric/source/clk_related/spikecnt.v"/>
       <outfile xil_pn:name="spike_cnt_eric_tb.v"/>
-      <outfile xil_pn:name="spikecnt.v"/>
     </transform>
-    <transform xil_pn:end_ts="1344295589" xil_pn:in_ck="4731394021994645568" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-7977395643799284173" xil_pn:start_ts="1344295589">
+    <transform xil_pn:end_ts="1345165675" xil_pn:in_ck="5019198705052173010" xil_pn:name="TRAN_ISimulateBehavioralModelRunFuse" xil_pn:prop_ck="-7977395643799284173" xil_pn:start_ts="1345165673">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
       <status xil_pn:value="OutOfDateForOutputs"/>
@@ -67,9 +66,11 @@
       <outfile xil_pn:name="spike_cnt_tb_isim_beh.exe"/>
       <outfile xil_pn:name="xilinxsim.ini"/>
     </transform>
-    <transform xil_pn:end_ts="1344295589" xil_pn:in_ck="-5448792182441639814" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-5926615317640616746" xil_pn:start_ts="1344295589">
+    <transform xil_pn:end_ts="1345242293" xil_pn:in_ck="7208297251142613076" xil_pn:name="TRAN_ISimulateBehavioralModel" xil_pn:prop_ck="-5926615317640616746" xil_pn:start_ts="1345242293">
       <status xil_pn:value="SuccessfullyRun"/>
       <status xil_pn:value="ReadyToRun"/>
+      <status xil_pn:value="OutOfDateForOutputs"/>
+      <status xil_pn:value="OutputChanged"/>
       <outfile xil_pn:name="isim.cmd"/>
       <outfile xil_pn:name="isim.log"/>
       <outfile xil_pn:name="spike_cnt_tb_isim_beh.wdb"/>
