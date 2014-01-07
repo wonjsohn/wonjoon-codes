@@ -11,22 +11,25 @@ cd /home/eric/nerf_verilog_eric/projects/balance_limb_pymunk
 
 cursor_info = sprintf('cursor_info');  % scaler 20130829_114414
 load([cursor_info, '.mat']); 
-for k = 1:1
+for k = 1:2
   %% process EMG
 
   if k==1
-      fname1 = sprintf('20130829_114414');  % scaler 20130829_114414
+      fname1 = sprintf('20130829_114414');  
       load([fname1, '.mat']); 
   elseif (k==2)
-      fname2 = sprintf('20130829_105922');  % scaler 20130829_105922
+      fname2 = sprintf('20130829_105922'); 
       load([fname2, '.mat']);
   end
 
+  % scaler 20130829_114414  (bigger gain? , cut)  |    % scaler 20130829_105922   (smaller gain?, offset)
+  %  20130920_150701 : trial5 (DC-UP) - no input     |   % 
+  
 n = 3;
 start =300;
 %start = 1250;
 last =12500;
-offset = 480;
+offset = 480; %150; %480;
 
 t_bic= data_bic(:,1);
 t_tri= data_tri(:,1);
@@ -89,14 +92,14 @@ EMG_bic_cut=filtfilt(B, A, f_rec_emg_bic_cut); %in the case of Off-line treatmen
 EMG_high_tri_cut=filtfilt(D, C, f_emg_tri_cut); %in the case of Off-line treatment
 f_rec_emg_tri_cut = abs(EMG_high_tri_cut);  % rectify
 EMG_tri_cut=filtfilt(B, A, f_rec_emg_tri_cut); %in the case of Off-line treatment
-
-figure;
-[z,p,k] = butter(N,Fc_lpf*2/Fe,'low');
-% [z,p,k]= butter(N,Fc_hpf*2/Fe,'high')
-[sos,g] = zp2sos(z,p,k);      % Convert to SOS form
-Hd = dfilt.df2tsos(sos,g);   % Create a dfilt object
-h = fvtool(Hd);              % Plot magnitude response
-set(h,'Analysis','freq')      % Display frequency response 
+% 
+% figure;
+% [z,p,k] = butter(N,Fc_lpf*2/Fe,'low');
+% % [z,p,k]= butter(N,Fc_hpf*2/Fe,'high')
+% [sos,g] = zp2sos(z,p,k);      % Convert to SOS form
+% Hd = dfilt.df2tsos(sos,g);   % Create a dfilt object
+% h = fvtool(Hd);              % Plot magnitude response
+% set(h,'Analysis','freq')      % Display frequency response 
 
 
 %%% off set data
@@ -116,23 +119,26 @@ hfig = figure(1);
 n=3;
 subplot(n, 1, 1);
 
-xCursor=zeros(length(cursor_info), 1);
-yCursor=zeros(length(cursor_info), 1);
+
 if (k == 2)
-    plot(t_bic_cut, length_bic_offset,'--', 'LineWidth',2);
+    plot(t_bic_cut, length_bic_offset,'--', 'LineWidth',2, 'color', 'black');
 else
-    plot(t_bic_cut, length_bic_cut, 'LineWidth',2);    
+    plot(t_bic_cut, length_bic_cut, 'LineWidth',2, 'color', 'black');    
 %     [pks, locs] = findpeaks(length_bic_cut);
 %     hold on
     % showing the peaks (manually acquired)  
+    xCursor=zeros(length(cursor_info), 1);
+    yCursor=zeros(length(cursor_info), 1);
+     cursor_offset = 0.8;
     for i = 1:length(cursor_info)
         hold on
-        xCursor(i)=cursor_info(1, i).Position(1);
+        xCursor(i)=cursor_info(1, i).Position(1)+cursor_offset;
         yCursor(i)=cursor_info(1, i).Position(2); 
+         
         plot(xCursor(i),yCursor(i), 'r+');
     end
 end
-ylim([0.7 1.3])
+ylim([0.7 1.4])
 % legend('biceps length');
 % grid on
 axis off
@@ -141,22 +147,22 @@ grid on
 % 
 subplot(n, 1, 2);
 if (k == 2)
-    plot(t_bic_cut, EMG_bic_offset, '--', 'LineWidth',2);
+    plot(t_bic_cut, EMG_bic_offset, '-', 'LineWidth',3, 'color', 'black');
 else     
-    plot(t_bic_cut, EMG_bic_cut);
+    plot(t_bic_cut, EMG_bic_cut, 'color', 'black');
 end
 % legend('full wave rect biceps emg');
 % grid on
-ylim([-0.5 3.5]);
+% ylim([-0.5 3.5]);
 axis off
 hold on
 grid on
 
 subplot(n, 1, 3);
 if (k == 2)
-    plot(t_bic_cut, force_bic_offset, '--', 'LineWidth',2);
+    plot(t_bic_cut, force_bic_offset, '-', 'LineWidth',3, 'color', 'black');
 else
-    plot(t_bic_cut, force_bic_cut, 'LineWidth',2);
+    plot(t_bic_cut, force_bic_cut, 'LineWidth',2, 'color', 'black');
 end
  % legend('force bicpes');
 % grid on
@@ -164,14 +170,15 @@ axis off
 hold on
 grid on
 
+%%
 hfig2 = figure(2);
 n=3;
 subplot(n, 1, 1);
 
 if (k == 2)
-    plot(t_tri_cut,  length_tri_offset, '--', 'LineWidth',2);
+    plot(t_tri_cut,  length_tri_offset, '--', 'LineWidth',2, 'color', 'black');
 else
-    plot(t_tri_cut, length_tri_cut, 'LineWidth',2);
+    plot(t_tri_cut, length_tri_cut, 'LineWidth',2, 'color', 'black');
 end
     % legend('triceps length');
 ylim([0.7 1.3])
@@ -182,9 +189,9 @@ grid on
 % 
 subplot(n, 1, 2);
 if (k == 2)
-    plot(t_tri_cut, EMG_tri_offset, '--', 'LineWidth',2);
+    plot(t_tri_cut, EMG_tri_offset, '-', 'LineWidth',3, 'color', 'black');
 else    
-    plot(t_tri_cut, EMG_tri_cut);
+    plot(t_tri_cut, EMG_tri_cut, 'color', 'black');
 end
 % legend('full wave rect triceps emg');
 % grid on
@@ -195,9 +202,9 @@ hold on
 grid on
 subplot(n, 1, 3);
 if (k == 2)
-    plot(t_tri_cut, force_tri_offset, '--', 'LineWidth',2);
+    plot(t_tri_cut, force_tri_offset, '-', 'LineWidth',3, 'color', 'black');
 else 
-    plot(t_tri_cut, force_tri_cut, 'LineWidth',2);
+    plot(t_tri_cut, force_tri_cut, 'LineWidth',2, 'color', 'black');
 end
 % legend('force triceps');
 % grid on
@@ -307,7 +314,7 @@ figure;
 % 
 % yy = spline(xCursor, yCursor, xx);
 % plot(xx, yy);
-subplot(3, 1, 1);
+
 % yy=spline(t_bic_cut, , x);    % cubic spline interpolation
 % plot(ppval(cs, xx));
 
@@ -315,10 +322,11 @@ a = unique(xCursor);
 
 t_step=200;
 
+%%  for cut data
 t_interp = [];
 len_interp = [];
 EMG_interp = [];
-for i = 1:length(cursor_info)-1
+for i = 1:length(cursor_info)-2   % get rid of last cursor
     ind_temp =  find(t_bic_cut == a(i));
 %     ind = [ind ind_temp];
     if i == 1
@@ -338,37 +346,70 @@ for i = 1:length(cursor_info)-1
     EMG_interp=[EMG_interp EMG_interp_temp];
 end
 
+%%  for offset data
+t_interp_offset = [];
+len_interp_offset = [];
+EMG_interp_offset = [];
+for i = 1:length(cursor_info)-2 % get rid of last cursor
+    ind_temp =  find(t_bic_cut == a(i));
+%     ind = [ind ind_temp];
+    if i == 1
+        t_interp_temp = 2:(a(i)-2)/(t_step-1):a(i);
+        len_interp_temp=interp1(t_bic_cut(1:ind_temp),length_bic_offset(1:ind_temp),t_interp_temp);
+        EMG_interp_temp=interp1(t_bic_cut(1:ind_temp),EMG_bic_offset(1:ind_temp),t_interp_temp);
+    else
+        t_interp_temp = a(i-1):(a(i)-a(i-1))/(t_step-1):a(i);
+        ind = find(t_bic_cut == a(i))
+        ind_prev = find(t_bic_cut == a(i-1))
+        len_interp_temp=interp1(t_bic_cut(ind_prev+1:ind_temp),length_bic_offset(ind_prev+1:ind_temp),t_interp_temp);
+        EMG_interp_temp=interp1(t_bic_cut(ind_prev+1:ind_temp),EMG_bic_offset(ind_prev+1:ind_temp),t_interp_temp);
+    end  
+    
+    t_interp_offset = [t_interp_offset t_interp_temp];
+    len_interp_offset = [len_interp_offset len_interp_temp];
+    EMG_interp_offset=[EMG_interp_offset EMG_interp_temp];
+end
 
-
+subplot(3, 1, 1);
 plot(t_interp, len_interp, 'k', 'LineWidth',2);
 axis off
 subplot(3, 1, 2);
 t_new = linspace(2, 85, 10800);
-plot(t_new, len_interp, 'k',  'LineWidth',2);
+plot(t_new, len_interp, 'k',  'LineWidth',1);
+hold on
+plot(t_new, len_interp_offset, 'k',  'LineWidth',3);
 axis off
 subplot(3, 1, 3);
-plot(t_new, EMG_interp, 'k',  'LineWidth',2);
+plot(t_new, EMG_interp, 'k',  'LineWidth',1);
+hold on
+plot(t_new, EMG_interp_offset, 'k',  'LineWidth',3);
+
 axis off
+
+
 
 
 %% correlation analysis
 
 len_interp = len_interp - mean(len_interp(~isnan(len_interp)));   % remove bias
-EMG_interp = EMG_interp - mean(EMG_interp(~isnan(EMG_interp)));   % remove bias
+EMG_interp = EMG_interp - mean(EMG_interp(~isnan(EMG_interp)));   % remove bias\
+
+len_interp_offset = len_interp_offset - mean(len_interp_offset(~isnan(len_interp_offset)));   % remove bias
+EMG_interp_offset = EMG_interp_offset - mean(EMG_interp_offset(~isnan(EMG_interp_offset)));   % remove bias
+
 
 [rho, pval] = corr(transpose(len_interp(~isnan(len_interp))), transpose(EMG_interp(~isnan(EMG_interp))))
  
 
 %  [c, lags] = xcorr(transpose(len_interp(~isnan(len_interp))), transpose(EMG_interp(~isnan(EMG_interp))));
 [c, lags] = xcorr(transpose(len_interp(~isnan(len_interp))), transpose(EMG_interp(~isnan(EMG_interp))));
+[c_offset, lags_offset] = xcorr(transpose(len_interp_offset(~isnan(len_interp_offset))), transpose(EMG_interp_offset(~isnan(EMG_interp_offset))));
 
- figure;
+figure;
 %  c = c(length(c)/2:end);
- subplot(2,1,1);
-%  plot(c,'k');
- plot(lags, c);
+ subplot(2,1,1);plot(lags, c);legend('cut');
 %  stem(lags, c);
-subplot(2,1,2);plot(lags,'k');
+subplot(2,1,2);plot(lags_offset, c_offset,'k'); 
 
 %% piecewise cross correlation 
 
